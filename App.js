@@ -4,11 +4,14 @@ import Loading from './Loading';
 import * as Location from 'expo-location';
 
 export default class extends React.Component {
+  state = {
+    isLoading : true
+  }
   getLocation= async () => {
     try {
       await Location.requestPermissionsAsync();
       const {coords : {latitude, longitude}} = await Location.getCurrentPositionAsync();
-      console.log(latitude, longitude);
+      this.setState({isLoading : true});
     } catch (error) {
       Alert.alert("Cant't find you.", "So sad");
     }
@@ -17,6 +20,7 @@ export default class extends React.Component {
     this.getLocation();
   };
   render(){
-    return <Loading />;
+    const {isLoading} = this.state;
+    return isLoading ?<Loading /> : null;
   } 
 }

@@ -5,13 +5,13 @@ import {View, Text, StyleSheet} from 'react-native';
 
 export default function Weather({temp}){
     return (
-    <View class={styles.container}>
+    <View style={styles.container}>
         <Text>{temp}</Text>
     </View>
     );
 }
 
-Weather.PropTypes = {
+Weather.propTypes = {
     temp : PropTypes.number.isRequired
 };
 
